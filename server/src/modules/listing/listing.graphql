@@ -1,0 +1,7 @@
+type Query {
+    listings: [Listing!]
+}
+
+type Listing {
+    id: Int!
+}
