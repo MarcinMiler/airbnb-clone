@@ -4,9 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { join } from 'path'
 
 import { ListingModule } from 'modules/listing/listing.module'
+import { UserModule } from 'modules/user/user.module'
 
 @Module({
     imports: [
+        UserModule,
         ListingModule,
         TypeOrmModule.forRoot(),
         GraphQLModule.forRoot({
