@@ -25,7 +25,8 @@
         "one-line": [false],
         "one-variable-per-declaration": [false],
         "semicolon": false,
-        "trailing-comma": false
+        "trailing-comma": false,
+        "no-console": false
     },
     "rulesDirectory": []
 }

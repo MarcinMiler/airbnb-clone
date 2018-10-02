@@ -1,0 +1,10 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "marcin",
+    "password": "marcin",
+    "database": "airbnb-clone",
+    "entities": ["src/**/**.entity{.ts,.js}"],
+    "synchronize": true
+}
