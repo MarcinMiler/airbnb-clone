@@ -11,4 +11,9 @@ export class UserResolver {
     async register(@Args('input') register: RegisterDto) {
         return await this.userService.register(register)
     }
+
+    @Mutation('login')
+    async login(@Args('input') login: RegisterDto) {
+        return await this.userService.login(login)
+    }
 }
