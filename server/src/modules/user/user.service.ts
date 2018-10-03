@@ -1,28 +1,17 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { JwtService } from '@nestjs/jwt'
 import { Repository } from 'typeorm'
 import * as bcrypt from 'bcryptjs'
 
 import { User } from './user.entity'
 import { RegisterDto } from './dto/register.dto'
 import { RegisterResponse, LoginResponse } from 'graphql.schema'
-import { JwtPayload } from './interfaces/JwtPayload.interface'
 
 @Injectable()
 export class UserService {
     constructor(
-        @InjectRepository(User) private readonly userRepo: Repository<User>,
-        private readonly jwtService: JwtService
+        @InjectRepository(User) private readonly userRepo: Repository<User>
     ) {}
-
-    private createToken(id: number) {
-        const data: JwtPayload = { id }
-
-        const token = this.jwtService.sign({ data })
-
-        return token
-    }
 
     async register(register: RegisterDto): Promise<RegisterResponse> {
         const { email } = register
@@ -77,11 +66,15 @@ export class UserService {
             }
         }
 
-        const token = this.createToken(findUserByEmail.id)
+        const token = 'sdgfsdfg'
 
         return {
             ok: true,
             token
         }
+    }
+
+    async findOne(id: number): Promise<User> {
+        return await this.userRepo.findOne(id)
     }
 }

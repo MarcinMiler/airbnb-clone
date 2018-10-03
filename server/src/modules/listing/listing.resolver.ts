@@ -1,5 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
+import { UseGuards } from '@nestjs/common'
 
+import { GqlAuthGuard } from '../auth/guards/GqlAuthGuard'
 import { ListingService } from './listing.service'
 import { Listing } from 'graphql.schema'
 import { CreateListingDto } from './dto/create-listing.dto'
@@ -9,6 +11,7 @@ export class ListingResolver {
     constructor(private readonly listingService: ListingService) {}
 
     @Query('listings')
+    @UseGuards(new GqlAuthGuard())
     findAll(): Promise<Listing[]> {
         return this.listingService.findAll()
     }
