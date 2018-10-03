@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Inject, forwardRef } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import * as bcrypt from 'bcryptjs'
@@ -6,11 +6,14 @@ import * as bcrypt from 'bcryptjs'
 import { User } from './user.entity'
 import { RegisterDto } from './dto/register.dto'
 import { RegisterResponse, LoginResponse } from 'graphql.schema'
+import { AuthService } from '../auth/auth.service'
 
 @Injectable()
 export class UserService {
     constructor(
-        @InjectRepository(User) private readonly userRepo: Repository<User>
+        @InjectRepository(User) private readonly userRepo: Repository<User>,
+        @Inject(forwardRef(() => AuthService))
+        private readonly authService: AuthService
     ) {}
 
     async register(register: RegisterDto): Promise<RegisterResponse> {
@@ -66,7 +69,7 @@ export class UserService {
             }
         }
 
-        const token = 'sdgfsdfg'
+        const token = await this.authService.signIn(findUserByEmail.id)
 
         return {
             ok: true,

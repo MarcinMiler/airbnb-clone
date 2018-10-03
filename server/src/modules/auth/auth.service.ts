@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Inject, forwardRef } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 
 import { UserService } from '../user/user.service'
@@ -7,6 +7,7 @@ import { JwtPayload } from './interfaces/JwtPayload.interface'
 @Injectable()
 export class AuthService {
     constructor(
+        @Inject(forwardRef(() => UserService))
         private readonly userService: UserService,
         private readonly jwtService: JwtService
     ) {}
