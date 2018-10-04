@@ -3,10 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import * as bcrypt from 'bcryptjs'
 
+import { AuthService } from '../auth/auth.service'
 import { User } from './user.entity'
 import { RegisterDto } from './dto/register.dto'
 import { RegisterResponse, LoginResponse } from 'graphql.schema'
-import { AuthService } from '../auth/auth.service'
 
 @Injectable()
 export class UserService {

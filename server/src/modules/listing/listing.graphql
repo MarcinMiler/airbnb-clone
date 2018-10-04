@@ -1,5 +1,6 @@
 type Query {
     listings: [Listing]
+    listing(id: Int!): Listing
 }
 
 type Mutation {
@@ -9,8 +10,24 @@ type Mutation {
 type Listing {
     id: Int!
     name: String!
+    category: String!
+    description: String!
+    price: Int!
+    beds: Int!
+    guests: Int!
+    lat: Int!
+    lng: Int!
+    amenities: [String!]
 }
 
 input CreateListingInput {
     name: String!
+    category: String!
+    description: String!
+    price: Int!
+    beds: Int!
+    guests: Int!
+    lat: Int!
+    lng: Int!
+    amenities: [String!]
 }

@@ -4,8 +4,10 @@ import {
     BaseEntity,
     PrimaryGeneratedColumn,
     Column,
-    BeforeInsert
+    BeforeInsert,
+    OneToMany
 } from 'typeorm'
+import { Listing } from '../listing/listing.entity'
 
 @Entity()
 export class User extends BaseEntity {
@@ -17,6 +19,9 @@ export class User extends BaseEntity {
 
     @Column()
     password: string
+
+    @OneToMany(() => Listing, listing => listing.user)
+    listings: Listing[]
 
     @BeforeInsert()
     async hashPassword() {

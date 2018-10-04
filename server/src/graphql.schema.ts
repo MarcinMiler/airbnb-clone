@@ -1,5 +1,13 @@
 export class CreateListingInput {
     name: string;
+    category: string;
+    description: string;
+    price: number;
+    beds: number;
+    guests: number;
+    lat: number;
+    lng: number;
+    amenities: string[];
 }
 
 export class UserDataInput {
@@ -10,6 +18,14 @@ export class UserDataInput {
 export class Listing {
     id: number;
     name: string;
+    category: string;
+    description: string;
+    price: number;
+    beds: number;
+    guests: number;
+    lat: number;
+    lng: number;
+    amenities: string[];
 }
 
 export class LoginResponse {
@@ -27,6 +43,8 @@ export abstract class IMutation {
 
 export abstract class IQuery {
     abstract listings(): Listing[] | Promise<Listing[]>;
+
+    abstract listing(id: number): Listing | Promise<Listing>;
 
     abstract temp__(): boolean | Promise<boolean>;
 }

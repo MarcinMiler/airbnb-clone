@@ -1,4 +1,11 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import {
+    Entity,
+    BaseEntity,
+    PrimaryGeneratedColumn,
+    Column,
+    ManyToOne
+} from 'typeorm'
+import { User } from '../user/user.entity'
 
 @Entity()
 export class Listing extends BaseEntity {
@@ -7,4 +14,37 @@ export class Listing extends BaseEntity {
 
     @Column()
     name: string
+
+    @Column()
+    category: string
+
+    @Column({ nullable: true })
+    pictureUrl: string
+
+    @Column()
+    description: string
+
+    @Column()
+    price: number
+
+    @Column()
+    beds: number
+
+    @Column()
+    guests: number
+
+    @Column('double precision')
+    lat: number
+
+    @Column('double precision')
+    lng: number
+
+    @Column({ type: 'text', array: true })
+    amenities: string[]
+
+    @Column()
+    userId: number
+
+    @ManyToOne(() => User, user => user.listings)
+    user: User
 }
