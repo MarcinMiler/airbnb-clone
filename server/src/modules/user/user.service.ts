@@ -6,7 +6,7 @@ import * as bcrypt from 'bcryptjs'
 import { AuthService } from '../auth/auth.service'
 import { User } from './user.entity'
 import { RegisterDto } from './dto/register.dto'
-import { RegisterResponse, LoginResponse } from 'graphql.schema'
+import { RegisterResponse, LoginResponse } from '../../graphql.schema'
 
 @Injectable()
 export class UserService {
