@@ -1,7 +1,13 @@
 import * as React from 'react'
 
+import { Background } from './Components/Background'
+import { Navbar } from './Components/Navbar'
+import { Form } from './Components/Form'
+
 export const Home: React.SFC<{}> = () => (
-    <div>
-        <p>home</p>
-    </div>
+    <Background>
+        <Navbar />
+
+        <Form>lol</Form>
+    </Background>
 )
