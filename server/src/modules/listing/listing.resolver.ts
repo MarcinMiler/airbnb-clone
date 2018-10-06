@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
 import { UseGuards } from '@nestjs/common'
 
-import { GqlAuthGuard } from '../auth/guards/GqlAuthGuard'
+import { GqlAuthGuard } from 'modules/auth/guards/GqlAuthGuard'
 import { ListingService } from './listing.service'
 import { Listing } from 'graphql.schema'
 import { CreateListingDto } from './dto/create-listing.dto'
