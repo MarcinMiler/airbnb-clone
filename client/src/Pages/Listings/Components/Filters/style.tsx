@@ -8,6 +8,7 @@ export const Container = styled.div`
     align-items: center;
     border-top: 1px solid #e3e3e3;
     border-bottom: 1px solid #e3e3e3;
+    box-sizing: border-box;
 `
 export const FilterItem = styled.div`
     margin: 0 10px 0 10px;
