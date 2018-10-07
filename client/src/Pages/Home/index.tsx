@@ -5,6 +5,7 @@ import { Background } from './Components/Background'
 import { Navbar } from './Components/Navbar'
 import { Form } from './Components/Form'
 import { Login } from './Components/Login'
+import { Register } from './Components/Register'
 
 interface State {
     isOpen: boolean
@@ -13,7 +14,7 @@ interface State {
 
 export class Home extends React.Component<{}, State> {
     public readonly state = {
-        isOpen: true,
+        isOpen: false,
         page: ''
     }
 
@@ -22,8 +23,13 @@ export class Home extends React.Component<{}, State> {
 
     private close = () => this.setState(() => ({ isOpen: false, page: '' }))
 
+    private changePage = () =>
+        this.setState(({ page }) => ({
+            page: page === 'login' ? 'register' : 'login'
+        }))
+
     public render() {
-        const { isOpen } = this.state
+        const { isOpen, page } = this.state
 
         return (
             <Background>
@@ -33,7 +39,11 @@ export class Home extends React.Component<{}, State> {
 
                 {isOpen && (
                     <Modal handleClose={this.close}>
-                        <Login />
+                        {page === 'login' ? (
+                            <Login changePage={this.changePage} />
+                        ) : (
+                            <Register changePage={this.changePage} />
+                        )}
                     </Modal>
                 )}
             </Background>

@@ -5,7 +5,11 @@ import { Input } from 'src/Components/Input'
 import { Button } from 'src/Components/Button'
 import { LogoWrapper, Logo, Br, Text } from './style'
 
-export const Login: React.SFC<{}> = () => (
+interface Props {
+    changePage: () => void
+}
+
+export const Login: React.SFC<Props> = ({ changePage }) => (
     <>
         <LogoWrapper>
             <Logo src={LogoSvg} />
@@ -21,6 +25,6 @@ export const Login: React.SFC<{}> = () => (
 
         <Br />
 
-        <Text>Register</Text>
+        <Text onClick={changePage}>Register</Text>
     </>
 )
