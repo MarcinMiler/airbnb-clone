@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { withRouter, RouteComponentProps } from 'react-router'
 
-import { Modal } from '../Modal'
-import { Container, NavLink, Row, Svg, Center } from './style'
+import { Modal } from 'src/Components/Modal'
+import { Input } from 'src/Components/Input'
 import { Login } from './Components/Login'
 import { Register } from './Components/Register'
-import { withRouter, RouteComponentProps } from 'react-router'
-import { Input } from 'src/Components/Input'
+import { Container, NavLink, Row, Svg, Center } from './style'
 
 interface State {
     isOpen: boolean
