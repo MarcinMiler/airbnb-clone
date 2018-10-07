@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export const Container = styled.div`
     max-width: 1080px;
     height: 450px;
-    margin: 50px auto 0 auto;
+    margin: 120px auto 0 auto;
+    box-sizing: border-box;
 `
 export const Wrapper = styled.div`
     width: 380px;

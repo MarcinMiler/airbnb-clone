@@ -1,10 +1,18 @@
 import * as React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
+import { Navbar } from '../Components/Navbar'
 import { Home } from '../Pages/Home'
+import { Listings } from '../Pages/Listings'
 
 export const Routes: React.SFC<{}> = () => (
     <BrowserRouter>
-        <Route exact path="/" component={Home} />
+        <>
+            <Navbar />
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/listings" component={Listings} />
+            </Switch>
+        </>
     </BrowserRouter>
 )

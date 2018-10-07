@@ -9,7 +9,6 @@ export const GlobalStyle = createGlobalStyle`
         height: 100vh;
         margin: 0;
         box-sizing: border-box;
-        background: #f2f4f8;
         font-family: Montserrat;
     }
     p,h1,h2,h3,h4,h5,h6 {
