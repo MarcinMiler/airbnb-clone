@@ -1,7 +1,11 @@
 import * as React from 'react'
 import { Container, NavLink, Row } from './style'
 
-export const Navbar: React.SFC<{}> = () => (
+interface Props {
+    open: (page: string) => void
+}
+
+export const Navbar: React.SFC<Props> = ({ open }) => (
     <Container>
         <div>
             <svg
@@ -20,8 +24,8 @@ export const Navbar: React.SFC<{}> = () => (
         </div>
 
         <Row>
-            <NavLink>Login</NavLink>
-            <NavLink>Register</NavLink>
+            <NavLink onClick={() => open('login')}>Login</NavLink>
+            <NavLink onClick={() => open('register')}>Register</NavLink>
         </Row>
     </Container>
 )

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Container, Label, StyledInput } from './style'
 
 interface Props {
-    label: string
+    label?: string
     placeholder: string
     type?: string
     onChange: (value: string) => void
@@ -16,7 +16,7 @@ export const Input: React.SFC<Props> = ({
     type
 }) => (
     <Container>
-        <Label>{label}</Label>
+        {label && <Label>{label}</Label>}
 
         <StyledInput
             placeholder={placeholder}

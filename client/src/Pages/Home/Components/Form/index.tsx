@@ -1,7 +1,8 @@
 import * as React from 'react'
 
 import { Input } from 'src/Components/Input'
-import { Container, Wrapper, Title, Right, Button } from './style'
+import { Button } from 'src/Components/Button'
+import { Container, Wrapper, Title, Right } from './style'
 
 export const Form: React.SFC<{}> = () => (
     <Container>

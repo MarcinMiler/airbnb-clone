@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    width: 1080px;
+    max-width: 1080px;
     height: 450px;
     margin: 50px auto 0 auto;
 `
@@ -21,16 +21,4 @@ export const Right = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
-`
-export const Button = styled.div`
-    width: 100px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 3px;
-    background-color: #ff5a63;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
 `
