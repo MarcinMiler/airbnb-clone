@@ -9,6 +9,11 @@ export const Container = styled.div`
     display: flex;
     border-radius: 3px;
     border: 1px solid #e3e3e3;
+    transition: all 200ms ease;
+
+    &:hover {
+        box-shadow: 0px 0px 15px lightgray;
+    }
 `
 export const Image = styled.img`
     width: 300px;

@@ -9,11 +9,7 @@ export const Form: React.SFC<{}> = () => (
         <Wrapper>
             <Title>Book unique homes and experiences.</Title>
 
-            <Input
-                label="GDZIE?"
-                placeholder="Warszawa"
-                onChange={() => null}
-            />
+            <Input label="GDZIE?" placeholder="Warszaw" onChange={() => null} />
 
             <Input
                 label="PRZYJAZD"
