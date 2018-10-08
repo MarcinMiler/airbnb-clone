@@ -19,9 +19,9 @@ export const Input: React.SFC<Props> = ({
         {label && <Label>{label}</Label>}
 
         <StyledInput
+            onChange={(e: any) => onChange(e.target.value)}
             placeholder={placeholder}
             type={type}
-            onChange={(e: any) => onChange(e.target.value)}
         />
     </Container>
 )

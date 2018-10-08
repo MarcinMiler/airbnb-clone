@@ -45,7 +45,7 @@ export const RoomDetails = styled.div`
 `
 export const RoomDetailsText = styled.p`
     margin-right: 15px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     color: #484848;
 `

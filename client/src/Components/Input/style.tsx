@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+interface Input {
+    noMargin?: boolean
+}
+
+export const Container = styled.div<Input>`
     width: 100%;
-    margin: 20px 0 20px 0;
+    margin: 0 0 25px 0;
     display: flex;
     flex-direction: column;
 `

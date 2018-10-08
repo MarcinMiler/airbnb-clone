@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Image } from './Components/Image'
 import { Row } from './Components/Row'
 import { Details } from './Components/Details'
+import { Reservation } from './Components/Reservation'
 
 export const Listing: React.SFC<{}> = () => (
     <>
@@ -10,6 +11,7 @@ export const Listing: React.SFC<{}> = () => (
 
         <Row>
             <Details />
+            <Reservation />
         </Row>
     </>
 )

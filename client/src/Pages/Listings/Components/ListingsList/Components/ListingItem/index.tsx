@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
+import { Stars } from 'src/Components/Stars'
 import {
     Container,
     Image,
@@ -11,10 +12,7 @@ import {
     RoomsDetails,
     SmallText,
     Pricing,
-    VerySmallText,
-    Stars,
-    Star,
-    StarCount
+    VerySmallText
 } from './style'
 
 export const ListingItem: React.SFC<{}> = () => (
@@ -46,12 +44,7 @@ export const ListingItem: React.SFC<{}> = () => (
                     <Title>90 zł</Title>
                     <VerySmallText>za dzien</VerySmallText>
 
-                    <Stars>
-                        {[1, 2, 3, 4, 5].map(i => (
-                            <Star key={i} />
-                        ))}
-                        <StarCount>70</StarCount>
-                    </Stars>
+                    <Stars />
                 </Pricing>
             </Row>
         </Container>

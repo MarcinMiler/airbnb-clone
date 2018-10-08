@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { MdStar } from 'react-icons/md'
-
 export const Container = styled.div`
     width: 100%;
     height: 200px;
@@ -54,21 +52,6 @@ export const Pricing = styled.div`
 `
 export const VerySmallText = styled.p`
     margin-top: 3px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #484848;
-`
-export const Stars = styled.div`
-    margin-top: 7px;
-    display: flex;
-    align-items: center;
-`
-export const Star = styled(MdStar)`
-    font-size: 12px;
-    color: #008387;
-`
-export const StarCount = styled.p`
-    margin: 3px 0 0 4px;
     font-size: 12px;
     font-weight: 600;
     color: #484848;
