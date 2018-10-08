@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Crc';
+    src: local('Crc'), url('../Fonts/Crc.woff') format('woff');
+}
+
+body {
+    font-family: 'Crc';
+}
