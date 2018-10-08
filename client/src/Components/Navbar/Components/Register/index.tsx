@@ -2,7 +2,8 @@ import * as React from 'react'
 
 import { Input } from 'src/Components/Input'
 import { Button } from 'src/Components/Button'
-import { Br, Text } from './style'
+import { Br } from 'src/Components/Br'
+import { Text } from './style'
 
 interface Props {
     changePage: () => void

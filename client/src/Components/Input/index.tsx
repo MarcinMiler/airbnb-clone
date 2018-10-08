@@ -6,6 +6,7 @@ interface Props {
     label?: string
     placeholder: string
     type?: string
+    noMargin?: boolean
     onChange: (value: string) => void
 }
 
@@ -13,9 +14,10 @@ export const Input: React.SFC<Props> = ({
     label,
     placeholder,
     onChange,
-    type
+    type,
+    noMargin
 }) => (
-    <Container>
+    <Container noMargin={noMargin}>
         {label && <Label>{label}</Label>}
 
         <StyledInput

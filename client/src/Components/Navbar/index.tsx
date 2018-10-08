@@ -55,6 +55,7 @@ class C extends React.Component<RouteComponentProps<{}>, State> {
 
                     {!isHomePage && (
                         <Input
+                            noMargin
                             onChange={() => null}
                             placeholder="Polska, Warszawa"
                         />

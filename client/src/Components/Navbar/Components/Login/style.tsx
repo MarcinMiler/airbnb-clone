@@ -9,12 +9,6 @@ export const Logo = styled.img`
     width: 200px;
     height: 200px;
 `
-export const Br = styled.div`
-    width: 100%;
-    height: 1px;
-    margin: 20px 0 20px 0;
-    background-color: #e3e3e3;
-`
 export const Text = styled.p`
     width: 100px;
     margin: 20px auto 0 auto;

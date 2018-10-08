@@ -3,7 +3,8 @@ import * as React from 'react'
 import LogoSvg from 'src/Images/logo.svg'
 import { Input } from 'src/Components/Input'
 import { Button } from 'src/Components/Button'
-import { LogoWrapper, Logo, Br, Text } from './style'
+import { Br } from 'src/Components/Br'
+import { LogoWrapper, Logo, Text } from './style'
 
 interface Props {
     changePage: () => void

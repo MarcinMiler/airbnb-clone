@@ -74,9 +74,3 @@ export const Description = styled.p`
     font-size: 16px;
     color: #484848;
 `
-export const Br = styled.div`
-    width: 100%;
-    height: 1px;
-    margin: 20px 0 20px 0;
-    background-color: #e3e3e3;
-`

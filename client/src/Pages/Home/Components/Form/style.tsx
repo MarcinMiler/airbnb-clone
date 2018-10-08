@@ -8,12 +8,12 @@ export const Container = styled.div`
 `
 export const Wrapper = styled.div`
     width: 380px;
-    height: 420px;
-    padding: 32px;
+    padding: 32px 32px 20px 32px;
     border-radius: 4px;
     background-color: white;
 `
-export const Title = styled.div`
+export const Title = styled.h1`
+    margin-bottom: 20px;
     font-size: 30px;
     font-weight: 700;
     color: #494a4a;

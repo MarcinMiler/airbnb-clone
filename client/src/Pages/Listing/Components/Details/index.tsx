@@ -1,4 +1,6 @@
 import * as React from 'react'
+
+import { Br } from 'src/Components/Br'
 import {
     Container,
     Title,
@@ -13,8 +15,7 @@ import {
     BedIcon,
     DoorIcon,
     BathIcon,
-    Description,
-    Br
+    Description
 } from './style'
 
 export const Details: React.SFC<{}> = () => (
