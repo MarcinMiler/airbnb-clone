@@ -5,6 +5,7 @@ import { Navbar } from '../Components/Navbar'
 import { Home } from '../Pages/Home'
 import { Listings } from '../Pages/Listings'
 import { Listing } from '../Pages/Listing'
+import { CreateListing } from '../Pages/CreateListing'
 
 export const Routes: React.SFC<{}> = () => (
     <BrowserRouter>
@@ -15,6 +16,7 @@ export const Routes: React.SFC<{}> = () => (
                     <Navbar />
                     <Route path="/listings" component={Listings} />
                     <Route path="/listing/:id" component={Listing} />
+                    <Route path="/createListing" component={CreateListing} />
                 </>
             </Route>
         </Switch>

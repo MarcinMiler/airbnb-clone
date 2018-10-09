@@ -31,7 +31,7 @@ export const Svg = styled.svg<InvertColors>`
 export const NavLink = styled.p<InvertColors>`
     margin: 0 20px 0 20px;
     font-size: 14px;
-    font-weight: 600;
-    color: ${p => (p.invertColors ? 'white' : '#494a55')};
+    font-weight: 500;
+    color: ${p => (p.invertColors ? 'white' : '#484848')};
     cursor: pointer;
 `

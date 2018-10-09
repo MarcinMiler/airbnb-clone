@@ -65,6 +65,12 @@ class C extends React.Component<RouteComponentProps<{}>, State> {
                 <Row>
                     <NavLink
                         invertColors={isHomePage}
+                        onClick={() => push('/createListing')}
+                    >
+                        Zostan gospodarzem
+                    </NavLink>
+                    <NavLink
+                        invertColors={isHomePage}
                         onClick={() => push('/listings')}
                     >
                         Listings
