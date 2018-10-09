@@ -7,24 +7,21 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
 `
-
-export const White = styled.div`
-    width: 65%;
-    height: calc(100vh - 90px);
-    position: fixed;
-    left: 0;
-    background-color: white;
-`
-export const Gray = styled.div`
-    width: 35%;
-    height: calc(100vh - 90px);
-    position: fixed;
-    right: 0;
-    background-color: #fafafa;
-`
 export const Wrapper = styled.div`
     width: 550px;
-    height: 650px;
-    background-color: red;
-    z-index: 200;
+    height: 100%;
+    padding: 25px;
+    position: relative;
+    border-right: 1px solid lightgray;
+    box-sizing: border-box;
+`
+export const Buttons = styled.div`
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
 `

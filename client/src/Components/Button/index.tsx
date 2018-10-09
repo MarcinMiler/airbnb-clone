@@ -15,4 +15,5 @@ export const Button = styled.div<Button>`
     font-weight: 600;
     color: white;
     cursor: pointer;
+    user-select: none;
 `
