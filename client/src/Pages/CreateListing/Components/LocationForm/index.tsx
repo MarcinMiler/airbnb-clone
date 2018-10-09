@@ -1,24 +1,25 @@
 import * as React from 'react'
+import { Field } from 'formik'
 
-import { Input } from 'src/Components/Input'
+import { FormikInput } from 'src/Components/FomikInput'
 import { Title } from './style'
 
 export const LocationForm: React.SFC<{}> = () => (
     <>
         <Title>Location</Title>
 
-        <Input
-            onChange={() => null}
+        <Field
+            name="lat"
             placeholder="Lat"
-            label="Price"
-            type="number"
+            label="Lat"
+            component={FormikInput}
         />
 
-        <Input
-            onChange={() => null}
+        <Field
+            name="lng"
             placeholder="Lng"
-            label="Price"
-            type="number"
+            label="Lng"
+            component={FormikInput}
         />
     </>
 )

@@ -1,5 +1,5 @@
 import * as React from 'react'
 
-import { Form } from './Components/Form'
+import { CreateListingForm } from './Components/CreateListingForm'
 
-export const CreateListing: React.SFC<{}> = () => <Form />
+export const CreateListing: React.SFC<{}> = () => <CreateListingForm />

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 interface Button {
     fullWidth?: boolean
+    disabled?: boolean
 }
 
 export const Button = styled.div<Button>`
@@ -11,8 +12,9 @@ export const Button = styled.div<Button>`
     align-items: center;
     justify-content: center;
     border-radius: 3px;
-    background-color: #ff5a63;
+    background-color: ${p => (p.disabled ? 'gray' : '#ff5a63')};
     font-weight: 600;
+    font-family: Crc;
     color: white;
     cursor: pointer;
     user-select: none;
