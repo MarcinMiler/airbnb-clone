@@ -12,6 +12,7 @@ export const LocationForm: React.SFC<{}> = () => (
             name="lat"
             placeholder="Lat"
             label="Lat"
+            type="number"
             component={FormikInput}
         />
 
@@ -19,6 +20,7 @@ export const LocationForm: React.SFC<{}> = () => (
             name="lng"
             placeholder="Lng"
             label="Lng"
+            type="number"
             component={FormikInput}
         />
     </>

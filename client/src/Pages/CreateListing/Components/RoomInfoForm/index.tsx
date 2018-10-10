@@ -12,6 +12,7 @@ export const RoomInfoForm: React.SFC<{}> = () => (
             name="price"
             placeholder="Price"
             label="Price"
+            type="number"
             component={FormikInput}
         />
 
@@ -19,6 +20,7 @@ export const RoomInfoForm: React.SFC<{}> = () => (
             name="guests"
             placeholder="Guests"
             label="Guests"
+            type="number"
             component={FormikInput}
         />
 
@@ -26,6 +28,7 @@ export const RoomInfoForm: React.SFC<{}> = () => (
             name="beds"
             placeholder="Beds"
             label="Beds"
+            type="number"
             component={FormikInput}
         />
 
