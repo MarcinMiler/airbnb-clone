@@ -1,31 +1,41 @@
 import * as React from 'react'
+import { Formik } from 'formik'
 
-import LogoSvg from 'src/Images/logo.svg'
-import { Input } from 'src/Components/Input'
-import { Button } from 'src/Components/Button'
-import { Br } from 'src/Components/Br'
-import { LogoWrapper, Logo, Text } from './style'
+import { LoginMutation } from 'src/Graphql/Login'
+import { LoginUI } from './Login'
+
+interface FieldProps {
+    email: string
+    password: string
+}
 
 interface Props {
     changePage: () => void
 }
-
-export const Login: React.SFC<Props> = ({ changePage }) => (
-    <>
-        <LogoWrapper>
-            <Logo src={LogoSvg} />
-        </LogoWrapper>
-
-        <Br />
-
-        <Input onChange={() => null} type="text" placeholder="Email" />
-
-        <Input onChange={() => null} type="text" placeholder="Password" />
-
-        <Button fullWidth>Login</Button>
-
-        <Br />
-
-        <Text onClick={changePage}>Register</Text>
-    </>
-)
+export class Login extends React.Component<Props, {}> {
+    public render() {
+        const { changePage } = this.props
+        return (
+            <LoginMutation>
+                {({ login }) => (
+                    <Formik<FieldProps>
+                        initialValues={{ email: '', password: '' }}
+                        onSubmit={async (values: FieldProps) => {
+                            const lol = await login({
+                                variables: { ...values }
+                            })
+                            console.log(lol)
+                        }}
+                    >
+                        {({ submitForm }) => (
+                            <LoginUI
+                                submit={submitForm}
+                                changePage={changePage}
+                            />
+                        )}
+                    </Formik>
+                )}
+            </LoginMutation>
+        )
+    }
+}
