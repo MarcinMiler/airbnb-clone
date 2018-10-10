@@ -12,19 +12,25 @@ interface FieldProps {
 interface Props {
     changePage: () => void
 }
+
 export class Login extends React.Component<Props, {}> {
     public render() {
         const { changePage } = this.props
+
         return (
             <LoginMutation>
                 {({ login }) => (
                     <Formik<FieldProps>
                         initialValues={{ email: '', password: '' }}
                         onSubmit={async (values: FieldProps) => {
-                            const lol = await login({
+                            const response = await login({
                                 variables: { ...values }
                             })
-                            console.log(lol)
+                            const { token } = response.data.login
+
+                            if (token) {
+                                localStorage.setItem('token', token)
+                            }
                         }}
                     >
                         {({ submitForm }) => (
