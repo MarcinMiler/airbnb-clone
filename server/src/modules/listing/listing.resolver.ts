@@ -21,7 +21,7 @@ export class ListingResolver {
     }
 
     @Mutation('createListing')
-    @UseGuards(new GqlAuthGuard())
+    // @UseGuards(new GqlAuthGuard())
     async create(@Args('input') args: CreateListingDto): Promise<Listing> {
         return this.listingService.create(args)
     }

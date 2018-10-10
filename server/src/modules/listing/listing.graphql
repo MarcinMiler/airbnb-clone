@@ -1,6 +1,6 @@
 type Query {
     listings: [Listing]
-    listing(id: Int!): Listing
+    listing(id: ID!): Listing
 }
 
 type Mutation {

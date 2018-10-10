@@ -44,11 +44,18 @@ export abstract class IMutation {
 export abstract class IQuery {
     abstract listings(): Listing[] | Promise<Listing[]>;
 
-    abstract listing(id: number): Listing | Promise<Listing>;
+    abstract listing(id: string): Listing | Promise<Listing>;
+
+    abstract me(): User | Promise<User>;
 
     abstract temp__(): boolean | Promise<boolean>;
 }
 
 export class RegisterResponse {
     ok: boolean;
+}
+
+export class User {
+    id: number;
+    email: string;
 }

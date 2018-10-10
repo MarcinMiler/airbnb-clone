@@ -1,6 +1,15 @@
+type Query {
+    me: User
+}
+
 type Mutation {
     register(input: UserDataInput!): RegisterResponse!
     login(input: UserDataInput!): LoginResponse!
+}
+
+type User {
+    id: Int!
+    email: String!
 }
 
 type RegisterResponse {
