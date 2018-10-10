@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Formik, Form } from 'formik'
 
+import { CreateListingMutation } from 'src/Graphql/CreateListing'
 import { Wizard } from 'src/Components/Wizard'
 import { Stepper } from 'src/Components/Stepper'
 import { Button } from 'src/Components/Button'
@@ -9,7 +10,6 @@ import { RoomInfoForm } from '../RoomInfoForm'
 import { LocationForm } from '../LocationForm'
 
 import { Container, Wrapper, Buttons } from './style'
-import { CreateListingMutation } from '../../../../Graphql/CreateListing'
 
 interface FieldValues {
     name: string

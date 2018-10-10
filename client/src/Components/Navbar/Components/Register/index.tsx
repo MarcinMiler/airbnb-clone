@@ -1,28 +1,42 @@
 import * as React from 'react'
+import { Formik } from 'formik'
 
-import { Input } from 'src/Components/Input'
-import { Button } from 'src/Components/Button'
-import { Br } from 'src/Components/Br'
-import { Text } from './style'
+import { RegisterMutation } from 'src/Graphql/Register'
+import { RegisterUI } from './Register'
+
+interface FieldProps {
+    email: string
+    password: string
+}
 
 interface Props {
     changePage: () => void
 }
 
-export const Register: React.SFC<Props> = ({ changePage }) => (
-    <>
-        <Input onChange={() => null} type="text" placeholder="Email" />
+export class Register extends React.Component<Props, {}> {
+    public render() {
+        const { changePage } = this.props
 
-        <Input onChange={() => null} type="text" placeholder="Name" />
-
-        <Input onChange={() => null} type="text" placeholder="Surname" />
-
-        <Input onChange={() => null} type="password" placeholder="Password" />
-
-        <Button fullWidth>Register</Button>
-
-        <Br />
-
-        <Text onClick={changePage}>Login</Text>
-    </>
-)
+        return (
+            <RegisterMutation>
+                {({ register }) => (
+                    <Formik<FieldProps>
+                        initialValues={{ email: '', password: '' }}
+                        onSubmit={async (values: FieldProps) =>
+                            await register({
+                                variables: { ...values }
+                            })
+                        }
+                    >
+                        {({ submitForm }) => (
+                            <RegisterUI
+                                changePage={changePage}
+                                submit={submitForm}
+                            />
+                        )}
+                    </Formik>
+                )}
+            </RegisterMutation>
+        )
+    }
+}
