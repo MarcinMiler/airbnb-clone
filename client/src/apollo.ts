@@ -4,8 +4,8 @@ import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 
 const httpLink = createHttpLink({
-    // uri: 'https://airbnb-clone-mm.herokuapp.com'
-    uri: 'http://localhost:4000/graphql'
+    uri: 'https://airbnb-clone-mm.herokuapp.com'
+    // uri: 'http://localhost:4000/graphql'
 })
 
 const authLink = setContext((_, { headers }) => {

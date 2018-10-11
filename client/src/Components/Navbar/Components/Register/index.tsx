@@ -22,11 +22,17 @@ export class Register extends React.Component<Props, {}> {
                 {({ register }) => (
                     <Formik<FieldProps>
                         initialValues={{ email: '', password: '' }}
-                        onSubmit={async (values: FieldProps) =>
-                            await register({
+                        onSubmit={async (values: FieldProps) => {
+                            const response = await register({
                                 variables: { ...values }
                             })
-                        }
+
+                            const { ok } = response.data.register
+
+                            if (ok) {
+                                changePage()
+                            }
+                        }}
                     >
                         {({ submitForm }) => (
                             <RegisterUI

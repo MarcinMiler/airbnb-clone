@@ -17,6 +17,10 @@ export class C extends React.PureComponent<ChildProps<Props, MeQuery>> {
     public renderRoute = (routeProps: RouteComponentProps) => {
         const { data, component } = this.props
 
+        if (data) {
+            console.log(data.error)
+        }
+
         if (!data || data.loading) {
             return null
         }

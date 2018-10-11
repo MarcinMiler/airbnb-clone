@@ -1,18 +1,21 @@
 import * as React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
+import { compose, withApollo } from 'react-apollo'
+import { ApolloClient } from 'apollo-client'
 
-import { Modal } from 'src/Components/Modal'
-import { Input } from 'src/Components/Input'
-import { Login } from './Components/Login'
-import { Register } from './Components/Register'
-import { Container, NavLink, Row, Svg, Center } from './style'
+import { NavbarUI } from './Navbar'
+import { MeQuery } from 'src/Graphql/Me'
 
 interface State {
     isOpen: boolean
     page: string
 }
 
-class C extends React.Component<RouteComponentProps<{}>, State> {
+interface Props {
+    client: ApolloClient<any>
+}
+
+class C extends React.Component<RouteComponentProps<{}> & Props, State> {
     public readonly state = {
         isOpen: false,
         page: ''
@@ -28,7 +31,13 @@ class C extends React.Component<RouteComponentProps<{}>, State> {
             page: page === 'login' ? 'register' : 'login'
         }))
 
-    public render() {
+    private logout = () => {
+        this.props.client.resetStore()
+        localStorage.removeItem('token')
+        this.forceUpdate()
+    }
+
+    private getProps = () => {
         const { isOpen, page } = this.state
         const {
             location: { pathname },
@@ -37,70 +46,28 @@ class C extends React.Component<RouteComponentProps<{}>, State> {
 
         const isHomePage = pathname === '/'
 
+        return {
+            isHomePage,
+            isOpen,
+            page,
+            push,
+            open: this.open,
+            close: this.close,
+            changePage: this.changePage,
+            logout: this.logout
+        }
+    }
+
+    public render() {
         return (
-            <Container>
-                <Row>
-                    <Center>
-                        <Svg
-                            viewBox="0 0 1000 1000"
-                            role="presentation"
-                            aria-hidden="true"
-                            focusable="false"
-                            invertColors={isHomePage}
-                            onClick={() => push('/')}
-                        >
-                            <path d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z" />
-                        </Svg>
-                    </Center>
-
-                    {!isHomePage && (
-                        <Input
-                            noMargin
-                            onChange={() => null}
-                            placeholder="Polska, Warszawa"
-                        />
-                    )}
-                </Row>
-
-                <Row>
-                    <NavLink
-                        invertColors={isHomePage}
-                        onClick={() => push('/createListing')}
-                    >
-                        Zostan gospodarzem
-                    </NavLink>
-                    <NavLink
-                        invertColors={isHomePage}
-                        onClick={() => push('/listings')}
-                    >
-                        Listings
-                    </NavLink>
-                    <NavLink
-                        invertColors={isHomePage}
-                        onClick={() => this.open('login')}
-                    >
-                        Login
-                    </NavLink>
-                    <NavLink
-                        invertColors={isHomePage}
-                        onClick={() => this.open('register')}
-                    >
-                        Register
-                    </NavLink>
-                </Row>
-
-                {isOpen && (
-                    <Modal handleClose={this.close}>
-                        {page === 'login' ? (
-                            <Login changePage={this.changePage} />
-                        ) : (
-                            <Register changePage={this.changePage} />
-                        )}
-                    </Modal>
-                )}
-            </Container>
+            <MeQuery>
+                {({ me }) => <NavbarUI {...this.getProps()} me={me} />}
+            </MeQuery>
         )
     }
 }
 
-export const Navbar = withRouter(C)
+export const Navbar = compose(
+    withRouter,
+    withApollo
+)(C)

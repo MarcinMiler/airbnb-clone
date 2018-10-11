@@ -11,11 +11,12 @@ interface FieldProps {
 
 interface Props {
     changePage: () => void
+    push: (path: string) => void
 }
 
 export class Login extends React.Component<Props, {}> {
     public render() {
-        const { changePage } = this.props
+        const { changePage, push } = this.props
 
         return (
             <LoginMutation>
@@ -26,10 +27,11 @@ export class Login extends React.Component<Props, {}> {
                             const response = await login({
                                 variables: { ...values }
                             })
-                            const { token } = response.data.login
+                            const { token, ok } = response.data.login
 
-                            if (token) {
+                            if (token && ok) {
                                 localStorage.setItem('token', token)
+                                push('/listings')
                             }
                         }}
                     >
