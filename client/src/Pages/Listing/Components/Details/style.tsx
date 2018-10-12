@@ -10,6 +10,9 @@ export const Container = styled.div`
 export const Row = styled.div`
     display: flex;
 `
+export const TitleWrap = styled.div`
+    width: 500px;
+`
 export const Title = styled.p`
     max-width: 500px;
     font-size: 30px;

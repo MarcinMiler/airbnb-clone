@@ -9,7 +9,9 @@ export const ListingsList: React.SFC<{}> = () => (
     <Container>
         <ListingsQuery>
             {({ listings, loading }) =>
-                listings.map(listing => <ListingItem key={listing.id} />)
+                listings.map(listing => (
+                    <ListingItem key={listing.id} {...listing} />
+                ))
             }
         </ListingsQuery>
     </Container>

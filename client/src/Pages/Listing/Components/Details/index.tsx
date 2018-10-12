@@ -1,59 +1,24 @@
 import * as React from 'react'
 
-import { Br } from 'src/Components/Br'
-import {
-    Container,
-    Title,
-    Row,
-    User,
-    Username,
-    UserAvatar,
-    Text,
-    RoomDetails,
-    GroupIcon,
-    RoomDetailsText,
-    BedIcon,
-    DoorIcon,
-    BathIcon,
-    Description
-} from './style'
+import { ListingQuery } from 'src/Graphql/Listing'
+import { DetailsUI } from './Details'
 
-export const Details: React.SFC<{}> = () => (
-    <Container>
-        <Row>
-            <div>
-                <Title>Studio w Centrum przy Dworcu Gdynia</Title>
+interface Props {
+    id: string
+}
 
-                <Text>Gdynia</Text>
-            </div>
-            <User>
-                <UserAvatar src="https://a0.muscache.com/im/pictures/ead1a702-12fc-4a19-81c6-0fd97ec7d08b.jpg?aki_policy=profile_x_medium" />
-
-                <Username>Marlena</Username>
-            </User>
-        </Row>
-
-        <RoomDetails>
-            <GroupIcon />
-            <RoomDetailsText>2 goście</RoomDetailsText>
-
-            <DoorIcon />
-            <RoomDetailsText>1 sypialnia</RoomDetailsText>
-
-            <BedIcon />
-            <RoomDetailsText>1 lozko</RoomDetailsText>
-
-            <BathIcon />
-            <RoomDetailsText>1 lazienka</RoomDetailsText>
-        </RoomDetails>
-
-        <Description>
-            Bardzo słoneczny i ciepły w pełni wyposażony apartament ok 25m2 w
-            centrum Gdyni. Duży pokój z narożnikiem, aneks kuchenny, łazienka.
-            Do dworca Gdynia Główna 7 min spacerem. Wszystko czego możesz chcieć
-            na wakacjach i w podróży służbowej. Zapraszam :)
-        </Description>
-
-        <Br />
-    </Container>
-)
+export class Details extends React.Component<Props, {}> {
+    public render() {
+        const { id } = this.props
+        return (
+            <ListingQuery id={id}>
+                {({ listing, loading }) => {
+                    if (loading || !listing) {
+                        return <div />
+                    }
+                    return <DetailsUI {...listing} />
+                }}
+            </ListingQuery>
+        )
+    }
+}

@@ -15,33 +15,58 @@ import {
     VerySmallText
 } from './style'
 
-export const ListingItem: React.SFC<{}> = () => (
-    <Link to="/listing/1" style={{ textDecoration: 'none' }}>
+interface Props {
+    id: number
+    name: string
+    category: string
+    description: string
+    price: number
+    beds: number
+    guests: number
+    lat: number
+    lng: number
+    amenities: string[]
+}
+
+const getRoute = (id: number) => `/listing/${id}`
+
+export const ListingItem: React.SFC<Props> = ({
+    id,
+    name,
+    category,
+    description,
+    price,
+    beds,
+    guests,
+    lat,
+    lng,
+    amenities
+}) => (
+    <Link to={getRoute(id)} style={{ textDecoration: 'none' }}>
         <Container>
             <Image src="https://a0.muscache.com/im/pictures/126e41c4-2a1b-4251-b516-d239351126f7.jpg?aki_policy=large" />
 
             <Row>
                 <Details>
                     <Subtitle>CAŁY APARTAMENT</Subtitle>
-                    <Title>Studio w Centrum przy Dworcy Gdynia</Title>
+                    <Title>{name}</Title>
 
                     <RoomsDetails>
-                        <SmallText>2 goście •</SmallText>
+                        <SmallText>{guests} goście •</SmallText>
                         <SmallText>1 sypialnia •</SmallText>
-                        <SmallText>1 Łóżko •</SmallText>
+                        <SmallText>{beds} Łóżko •</SmallText>
                         <SmallText>1 Łazienka</SmallText>
                     </RoomsDetails>
 
                     <RoomsDetails>
-                        <SmallText>WIFI •</SmallText>
-                        <SmallText>Kuchnia •</SmallText>
-                        <SmallText>Pralka •</SmallText>
-                        <SmallText>Zmywarka</SmallText>
+                        {amenities.map((amenitie, i) => (
+                            <SmallText key={i}>{amenitie} •</SmallText>
+                        ))}
                     </RoomsDetails>
                 </Details>
 
                 <Pricing>
-                    <Title>90 zł</Title>
+                    <Title>{price} zł</Title>
                     <VerySmallText>za dzien</VerySmallText>
 
                     <Stars />
