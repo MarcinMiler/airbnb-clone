@@ -8,11 +8,16 @@ import { Br } from 'src/Components/Br'
 import { LogoWrapper, Logo, Text } from './style'
 
 interface Props {
+    isLoading: boolean
     changePage: () => void
     submit: () => void
 }
 
-export const LoginUI: React.SFC<Props> = ({ changePage, submit }) => (
+export const LoginUI: React.SFC<Props> = ({
+    changePage,
+    submit,
+    isLoading
+}) => (
     <Form>
         <LogoWrapper>
             <Logo src={LogoSvg} />
@@ -35,7 +40,7 @@ export const LoginUI: React.SFC<Props> = ({ changePage, submit }) => (
             component={FormikInput}
         />
 
-        <Button fullWidth onClick={submit}>
+        <Button fullWidth onClick={submit} loading={isLoading}>
             Login
         </Button>
 

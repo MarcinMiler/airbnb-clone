@@ -14,8 +14,17 @@ interface Props {
     push: (path: string) => void
 }
 
-export class Login extends React.Component<Props, {}> {
+interface State {
+    isLoading: boolean
+}
+
+export class Login extends React.Component<Props, State> {
+    public readonly state = {
+        isLoading: false
+    }
+
     public render() {
+        const { isLoading } = this.state
         const { changePage, push } = this.props
 
         return (
@@ -24,6 +33,7 @@ export class Login extends React.Component<Props, {}> {
                     <Formik<FieldProps>
                         initialValues={{ email: '', password: '' }}
                         onSubmit={async (values: FieldProps) => {
+                            this.setState({ isLoading: true })
                             const response = await login({
                                 variables: { ...values }
                             })
@@ -39,6 +49,7 @@ export class Login extends React.Component<Props, {}> {
                             <LoginUI
                                 submit={submitForm}
                                 changePage={changePage}
+                                isLoading={isLoading}
                             />
                         )}
                     </Formik>

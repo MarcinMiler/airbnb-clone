@@ -13,8 +13,17 @@ interface Props {
     changePage: () => void
 }
 
-export class Register extends React.Component<Props, {}> {
+interface State {
+    isLoading: boolean
+}
+
+export class Register extends React.Component<Props, State> {
+    public readonly state = {
+        isLoading: false
+    }
+
     public render() {
+        const { isLoading } = this.state
         const { changePage } = this.props
 
         return (
@@ -23,6 +32,7 @@ export class Register extends React.Component<Props, {}> {
                     <Formik<FieldProps>
                         initialValues={{ email: '', password: '' }}
                         onSubmit={async (values: FieldProps) => {
+                            this.setState({ isLoading: true })
                             const response = await register({
                                 variables: { ...values }
                             })
@@ -38,6 +48,7 @@ export class Register extends React.Component<Props, {}> {
                             <RegisterUI
                                 changePage={changePage}
                                 submit={submitForm}
+                                isLoading={isLoading}
                             />
                         )}
                     </Formik>
