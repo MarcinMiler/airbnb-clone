@@ -1,15 +1,9 @@
 import * as React from 'react'
-import { Formik, Form } from 'formik'
+import { withRouter, RouteComponentProps } from 'react-router'
+import { Formik } from 'formik'
 
 import { CreateListingMutation } from 'src/Graphql/CreateListing'
-import { Wizard } from 'src/Components/Wizard'
-import { Stepper } from 'src/Components/Stepper'
-import { Button } from 'src/Components/Button'
-import { BasicInfoForm } from '../BasicInfoForm'
-import { RoomInfoForm } from '../RoomInfoForm'
-import { LocationForm } from '../LocationForm'
-
-import { Container, Wrapper, Buttons } from './style'
+import { CreateListingFormUI } from './CreateListingForm'
 
 interface FieldValues {
     name: string
@@ -24,71 +18,64 @@ interface FieldValues {
     lng: number
 }
 
-// tslint:disable-next-line:jsx-key
-const pages = [<BasicInfoForm />, <RoomInfoForm />, <LocationForm />]
+interface State {
+    isLoading: boolean
+}
 
-export const CreateListingForm: React.SFC = () => (
-    <CreateListingMutation>
-        {({ createListing }) => (
-            <Formik<FieldValues>
-                initialValues={{
-                    name: '',
-                    category: '',
-                    picture: '',
-                    description: '',
-                    price: 0,
-                    guests: 0,
-                    beds: 0,
-                    amenities: '',
-                    lat: 0,
-                    lng: 0
-                }}
-                onSubmit={async (values: FieldValues) =>
-                    await createListing({
-                        variables: { ...values, amenities: [values.amenities] }
-                    })
-                }
-            >
-                {({ submitForm }) => (
-                    <Form>
-                        <Wizard>
-                            {({ nextStep, prevStep, step }) => (
-                                <>
-                                    <Stepper
-                                        currentStep={step + 1}
-                                        maxSteps={pages.length}
-                                    />
-                                    <Container>
-                                        <Wrapper>
-                                            {pages[step]}
-                                            <Buttons>
-                                                <Button
-                                                    disabled={step === 0}
-                                                    onClick={prevStep}
-                                                >
-                                                    Wstecz
-                                                </Button>
+export class C extends React.PureComponent<RouteComponentProps, State> {
+    public readonly state = {
+        isLoading: false
+    }
 
-                                                {step === pages.length - 1 ? (
-                                                    <Button
-                                                        onClick={submitForm}
-                                                    >
-                                                        Submit
-                                                    </Button>
-                                                ) : (
-                                                    <Button onClick={nextStep}>
-                                                        Dalej
-                                                    </Button>
-                                                )}
-                                            </Buttons>
-                                        </Wrapper>
-                                    </Container>
-                                </>
-                            )}
-                        </Wizard>
-                    </Form>
+    public render() {
+        const { isLoading } = this.state
+        const {
+            history: { push }
+        } = this.props
+
+        return (
+            <CreateListingMutation>
+                {({ createListing }) => (
+                    <Formik<FieldValues>
+                        initialValues={{
+                            name: '',
+                            category: '',
+                            picture: '',
+                            description: '',
+                            price: 0,
+                            guests: 0,
+                            beds: 0,
+                            amenities: '',
+                            lat: 0,
+                            lng: 0
+                        }}
+                        onSubmit={async (values: FieldValues) => {
+                            this.setState({ isLoading: true })
+                            const response = await createListing({
+                                variables: {
+                                    ...values,
+                                    amenities: [values.amenities]
+                                }
+                            })
+
+                            const { id } = response.data.createListing
+
+                            if (id) {
+                                push(`/listing/${id}`)
+                            }
+                        }}
+                    >
+                        {({ submitForm }) => (
+                            <CreateListingFormUI
+                                submit={submitForm}
+                                isLoading={isLoading}
+                            />
+                        )}
+                    </Formik>
                 )}
-            </Formik>
-        )}
-    </CreateListingMutation>
-)
+            </CreateListingMutation>
+        )
+    }
+}
+
+export const CreateListingForm = withRouter(C)

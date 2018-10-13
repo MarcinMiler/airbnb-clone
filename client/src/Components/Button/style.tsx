@@ -28,6 +28,7 @@ export const Container = styled.div<Button>`
     color: white;
     cursor: pointer;
     user-select: none;
+    pointer-events: ${p => (p.disabled ? 'none' : 'auto')};
 `
 export const Loader = styled.div`
     border: 3px solid transparent;
