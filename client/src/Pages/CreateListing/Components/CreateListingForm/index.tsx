@@ -3,6 +3,7 @@ import { withRouter, RouteComponentProps } from 'react-router'
 import { Formik } from 'formik'
 
 import { CreateListingMutation } from 'src/Graphql/CreateListing'
+import { ListingSchema } from './schema'
 import { CreateListingFormUI } from './CreateListingForm'
 
 interface FieldValues {
@@ -49,6 +50,7 @@ export class C extends React.PureComponent<RouteComponentProps, State> {
                             lat: 0,
                             lng: 0
                         }}
+                        validationSchema={ListingSchema}
                         onSubmit={async (values: FieldValues) => {
                             this.setState({ isLoading: true })
                             const response = await createListing({
