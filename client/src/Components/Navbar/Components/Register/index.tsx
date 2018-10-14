@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Formik } from 'formik'
 
 import { RegisterMutation } from 'src/Graphql/Register'
+import { RegisterSchema } from './RegisterSchema'
 import { RegisterUI } from './Register'
 
 interface FieldProps {
@@ -31,6 +32,7 @@ export class Register extends React.Component<Props, State> {
                 {({ register }) => (
                     <Formik<FieldProps>
                         initialValues={{ email: '', password: '' }}
+                        validationSchema={RegisterSchema}
                         onSubmit={async (values: FieldProps) => {
                             this.setState({ isLoading: true })
                             const response = await register({
