@@ -13,7 +13,7 @@ const MapWithAMarker = withGoogleMap<{
 }>(props => (
     <GoogleMap
         defaultZoom={8}
-        defaultCenter={props.defaultCenter}
+        center={props.defaultCenter}
         onClick={props.onClick}
     >
         <Marker position={{ lat: props.lat, lng: props.lng }} />
