@@ -9,7 +9,7 @@ export class GeoSuggest extends React.PureComponent<FieldProps<any>> {
         if (!place) {
             return
         }
-
+        console.log(place)
         const {
             location: { lat, lng }
         } = place
