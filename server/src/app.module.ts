@@ -19,7 +19,8 @@ import { AuthModule } from './modules/auth/auth.module'
             definitions: {
                 path: join(process.cwd(), 'src/graphql.schema.ts'),
                 outputAs: 'class'
-            }
+            },
+            path: '/'
         })
     ]
 })

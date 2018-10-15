@@ -5,6 +5,7 @@ import { GqlAuthGuard } from '../auth/guards/GqlAuthGuard'
 import { ListingService } from './listing.service'
 import { Listing } from '../../graphql.schema'
 import { CreateListingDto } from './dto/create-listing.dto'
+import { Usr } from 'modules/user/user.decorator'
 
 @Resolver('Listing')
 export class ListingResolver {
@@ -21,8 +22,11 @@ export class ListingResolver {
     }
 
     @Mutation('createListing')
-    // @UseGuards(new GqlAuthGuard())
-    async create(@Args('input') args: CreateListingDto): Promise<Listing> {
-        return this.listingService.create(args)
+    @UseGuards(new GqlAuthGuard())
+    async create(
+        @Args('input') args: CreateListingDto,
+        @Usr() user
+    ): Promise<Listing> {
+        return this.listingService.create(args, user)
     }
 }

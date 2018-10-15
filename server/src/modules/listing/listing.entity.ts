@@ -43,6 +43,12 @@ export class Listing extends BaseEntity {
     amenities: string[]
 
     @Column()
+    address: string
+
+    @Column({ type: 'text', array: true })
+    addressTags: string[]
+
+    @Column()
     userId: number
 
     @ManyToOne(() => User, user => user.listings)

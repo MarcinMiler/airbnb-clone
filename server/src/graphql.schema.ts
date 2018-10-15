@@ -5,9 +5,11 @@ export class CreateListingInput {
     price: number;
     beds: number;
     guests: number;
-    lat: number;
-    lng: number;
+    lat?: number;
+    lng?: number;
     amenities: string[];
+    address: string;
+    addressTags: string[];
 }
 
 export class UserDataInput {
@@ -23,9 +25,11 @@ export class Listing {
     price: number;
     beds: number;
     guests: number;
-    lat: number;
-    lng: number;
+    lat?: number;
+    lng?: number;
     amenities: string[];
+    address: string;
+    addressTags: string[];
 }
 
 export class LoginResponse {

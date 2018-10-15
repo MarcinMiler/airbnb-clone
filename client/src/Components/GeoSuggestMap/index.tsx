@@ -40,17 +40,22 @@ export class GeoSuggestMap extends React.PureComponent<FieldProps<any>, State> {
         }
 
         const {
-            location: { lat, lng }
+            location: { lat, lng },
+            label
         } = place
 
         const {
             form: { setValues, values }
         } = this.props
 
+        const addressTags = place.label.split(', ')
+
         setValues({
             ...values,
             lat,
-            lng
+            lng,
+            address: label,
+            addressTags
         })
 
         this.setState({

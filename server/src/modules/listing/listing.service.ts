@@ -20,10 +20,10 @@ export class ListingService {
         return await this.listingRepo.findOne(id)
     }
 
-    async create(listing: CreateListingDto): Promise<Listing> {
+    async create(listing: CreateListingDto, user): Promise<Listing> {
         const newListing = this.listingRepo.create({
             ...listing,
-            userId: 1,
+            userId: user.id,
             pictureUrl: null
         })
 

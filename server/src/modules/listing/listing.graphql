@@ -15,9 +15,11 @@ type Listing {
     price: Int!
     beds: Int!
     guests: Int!
-    lat: Int!
-    lng: Int!
+    lat: Float
+    lng: Float
     amenities: [String!]
+    address: String!
+    addressTags: [String!]
 }
 
 input CreateListingInput {
@@ -27,7 +29,9 @@ input CreateListingInput {
     price: Int!
     beds: Int!
     guests: Int!
-    lat: Int!
-    lng: Int!
+    lat: Float
+    lng: Float
     amenities: [String!]
+    address: String!
+    addressTags: [String!]
 }

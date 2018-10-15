@@ -17,6 +17,8 @@ interface FieldValues {
     amenities: string
     lat: number
     lng: number
+    address: string
+    addressTags: string[]
 }
 
 interface State {
@@ -48,11 +50,21 @@ export class C extends React.PureComponent<RouteComponentProps, State> {
                             beds: 0,
                             amenities: '',
                             lat: 0,
-                            lng: 0
+                            lng: 0,
+                            address: '',
+                            addressTags: ['']
                         }}
                         validationSchema={ListingSchema}
                         onSubmit={async (values: FieldValues) => {
                             this.setState({ isLoading: true })
+
+                            console.log({
+                                variables: {
+                                    ...values,
+                                    amenities: [values.amenities]
+                                }
+                            })
+
                             const response = await createListing({
                                 variables: {
                                     ...values,

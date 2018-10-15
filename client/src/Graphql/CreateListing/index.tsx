@@ -10,9 +10,11 @@ const createListingMutation = gql`
         $price: Int!
         $beds: Int!
         $guests: Int!
-        $lat: Int!
-        $lng: Int!
+        $lat: Float
+        $lng: Float
         $amenities: [String!]
+        $address: String!
+        $addressTags: [String!]
     ) {
         createListing(
             input: {
@@ -25,6 +27,8 @@ const createListingMutation = gql`
                 lat: $lat
                 lng: $lng
                 amenities: $amenities
+                address: $address
+                addressTags: $addressTags
             }
         ) {
             id
@@ -37,6 +41,8 @@ const createListingMutation = gql`
             lat
             lng
             amenities
+            address
+            addressTags
         }
     }
 `
