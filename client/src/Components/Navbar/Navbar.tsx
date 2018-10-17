@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Modal } from 'src/Components/Modal'
-import { Input } from 'src/Components/Input'
+import { GeoSuggest } from 'src/Components/GeoSuggest'
 import { Login } from './Components/Login'
 import { Register } from './Components/Register'
 import { Container, NavLink, Row, Svg, Center } from './style'
@@ -44,13 +44,7 @@ export const NavbarUI: React.SFC<Props> = ({
                 </Svg>
             </Center>
 
-            {!isHomePage && (
-                <Input
-                    noMargin
-                    onChange={() => null}
-                    placeholder="Polska, Warszawa"
-                />
-            )}
+            {!isHomePage && <GeoSuggest />}
         </Row>
 
         <Row>
