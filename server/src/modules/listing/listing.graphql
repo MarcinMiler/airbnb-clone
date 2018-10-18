@@ -1,6 +1,7 @@
 type Query {
     listings: [Listing]
     listing(id: ID!): Listing
+    searchListings(input: SearchListingsInput): [Listing]
 }
 
 type Mutation {
@@ -20,6 +21,10 @@ type Listing {
     amenities: [String!]
     address: String!
     addressTags: [String!]
+}
+
+input SearchListingsInput {
+    address: [String]
 }
 
 input CreateListingInput {

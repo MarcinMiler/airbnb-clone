@@ -26,6 +26,7 @@ interface Props {
     lat: number
     lng: number
     amenities: string[]
+    setPostion: (lat: number, lng: number) => void
 }
 
 const getRoute = (id: number) => `/listing/${id}`
@@ -40,10 +41,11 @@ export const ListingItem: React.SFC<Props> = ({
     guests,
     lat,
     lng,
-    amenities
+    amenities,
+    setPostion
 }) => (
     <Link to={getRoute(id)} style={{ textDecoration: 'none' }}>
-        <Container>
+        <Container onMouseEnter={() => setPostion(lat, lng)}>
             <Image src="https://a0.muscache.com/im/pictures/126e41c4-2a1b-4251-b516-d239351126f7.jpg?aki_policy=large" />
 
             <Row>

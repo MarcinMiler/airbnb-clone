@@ -18,7 +18,7 @@ export const searchListingsQuery = gql`
             lng
             amenities
             address
-            addresstags
+            addressTags
         }
     }
 `

@@ -6,6 +6,7 @@ import { ListingService } from './listing.service'
 import { Listing } from '../../graphql.schema'
 import { CreateListingDto } from './dto/create-listing.dto'
 import { Usr } from 'modules/user/user.decorator'
+import { SearchListingsDto } from './dto/search-listing-dto'
 
 @Resolver('Listing')
 export class ListingResolver {
@@ -19,6 +20,11 @@ export class ListingResolver {
     @Query('listing')
     findOne(@Args('id') id: number): Promise<Listing> {
         return this.listingService.findOne(id)
+    }
+
+    @Query('searchListings')
+    searchListings(@Args('input') args: SearchListingsDto) {
+        return this.listingService.searchListings(args)
     }
 
     @Mutation('createListing')

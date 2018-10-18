@@ -12,6 +12,10 @@ export class CreateListingInput {
     addressTags: string[];
 }
 
+export class SearchListingsInput {
+    address?: string[];
+}
+
 export class UserDataInput {
     email: string;
     password: string;
@@ -49,6 +53,8 @@ export abstract class IQuery {
     abstract listings(): Listing[] | Promise<Listing[]>;
 
     abstract listing(id: string): Listing | Promise<Listing>;
+
+    abstract searchListings(input?: SearchListingsInput): Listing[] | Promise<Listing[]>;
 
     abstract me(): User | Promise<User>;
 

@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Repository, getRepository } from 'typeorm'
 
 import { CreateListingDto } from './dto/create-listing.dto'
+import { SearchListingsDto } from './dto/search-listing-dto'
 import { Listing } from './listing.entity'
 
 @Injectable()
@@ -18,6 +19,13 @@ export class ListingService {
 
     async findOne(id: number): Promise<Listing> {
         return await this.listingRepo.findOne(id)
+    }
+
+    async searchListings(args: SearchListingsDto) {
+        return await getRepository(Listing)
+            .createQueryBuilder('l')
+            .where(`l.addressTags @> '{${args.address}}'`)
+            .getMany()
     }
 
     async create(listing: CreateListingDto, user): Promise<Listing> {

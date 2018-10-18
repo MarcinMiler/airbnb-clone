@@ -6,8 +6,8 @@ import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 
 const httpLink = createHttpLink({
-    // uri: 'https://airbnb-clone-mm.herokuapp.com'
-    uri: 'http://localhost:4000/'
+    uri: 'https://airbnb-clone-mm.herokuapp.com'
+    // uri: 'http://localhost:4000/'
 })
 
 const authLink = setContext((_, { headers }) => {
