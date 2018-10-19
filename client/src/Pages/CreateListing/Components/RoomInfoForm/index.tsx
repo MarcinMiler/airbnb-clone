@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Field } from 'formik'
 
 import { FormikInput } from 'src/Components/FomikInput'
+import { TagInput } from 'src/Components/TagInput'
 import { Title } from './style'
 
 export const RoomInfoForm: React.SFC<{}> = () => (
@@ -36,7 +37,7 @@ export const RoomInfoForm: React.SFC<{}> = () => (
             name="amenities"
             placeholder="Amenities"
             label="Amenities"
-            component={FormikInput}
+            component={TagInput}
         />
     </>
 )
