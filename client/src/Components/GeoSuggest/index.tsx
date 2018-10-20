@@ -2,15 +2,14 @@ import * as React from 'react'
 import Geosuggest from 'react-geosuggest'
 import { Subscribe } from 'unstated'
 
-import { SearchLocation } from 'src/Containers/SearchLocation'
-
+import { Location } from 'src/Containers/Location'
 import './geoInput.css'
 
 export class GeoSuggest extends React.PureComponent {
     public render() {
         return (
-            <Subscribe to={[SearchLocation]}>
-                {({ setPlace }: SearchLocation) => (
+            <Subscribe to={[Location]}>
+                {({ setPlace }: Location) => (
                     <Geosuggest
                         placeholder="Enter a location"
                         onSuggestSelect={place => setPlace(place)}

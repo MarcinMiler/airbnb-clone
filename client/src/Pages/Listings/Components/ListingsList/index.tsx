@@ -1,20 +1,16 @@
 import * as React from 'react'
+import { Subscribe } from 'unstated'
 
 import { SearchListingsQuery } from 'src/Graphql/SearchListings'
 import { ListingItem } from './Components/ListingItem'
+import { Location } from 'src/Containers/Location'
 
 import { Container } from './style'
-import { Subscribe } from 'unstated'
-import { SearchLocation } from 'src/Containers/SearchLocation'
-import { Postion } from 'src/Containers/Position'
 
 export const ListingsList: React.SFC<{}> = () => (
     <Container>
-        <Subscribe to={[SearchLocation, Postion]}>
-            {(
-                { state: { place } }: SearchLocation,
-                { setPostion }: Postion
-            ) => (
+        <Subscribe to={[Location]}>
+            {({ state: { place }, setPostion }: Location) => (
                 <SearchListingsQuery address={place}>
                     {({ listings, loading }) =>
                         listings.map(listing => (

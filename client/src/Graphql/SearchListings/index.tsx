@@ -36,7 +36,7 @@ interface Props {
 export class SearchListingsQuery extends React.PureComponent<Props> {
     public render() {
         const { address } = this.props
-
+        console.log(address)
         return (
             <Query query={searchListingsQuery} variables={{ address }}>
                 {({ data, loading }) => {

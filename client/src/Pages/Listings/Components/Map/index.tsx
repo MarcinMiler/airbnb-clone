@@ -1,20 +1,17 @@
 import * as React from 'react'
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 import { Subscribe } from 'unstated'
-import { Postion } from 'src/Containers/Position'
+
+import { Location } from 'src/Containers/Location'
 
 export const Map = withGoogleMap(() => (
-    <Subscribe to={[Postion]}>
-        {({ state: { lat, lng } }) => (
-            <GoogleMap
-                defaultZoom={7}
-                defaultCenter={{
-                    lat: 52.0685,
-                    lng: 19.9475
-                }}
-            >
-                <Marker position={{ lat, lng }} />
-            </GoogleMap>
-        )}
+    <Subscribe to={[Location]}>
+        {({ state: { center, marker, place } }: Location) =>
+            (console.log(place.length, 'LENG') as any) || (
+                <GoogleMap zoom={place.length > 1 ? 13 : 6} center={center}>
+                    {marker.lat && <Marker position={marker} />}
+                </GoogleMap>
+            )
+        }
     </Subscribe>
 ))
