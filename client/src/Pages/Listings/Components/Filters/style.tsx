@@ -14,6 +14,9 @@ export const Container = styled.div`
     border-bottom: 1px solid #e3e3e3;
     box-sizing: border-box;
 `
+export const Relative = styled.div`
+    position: relative;
+`
 export const FilterItem = styled.div<FilterItemProps>`
     margin: 0 10px 0 10px;
     padding: 6px 12px 6px 12px;
@@ -43,13 +46,13 @@ export const FilterItem = styled.div<FilterItemProps>`
         `};
 `
 export const PopOver = styled.div`
+    padding: 10px;
     position: absolute;
     top: 43px;
-    left: -2px;
+    left: 9px;
     width: 250px;
-    height: 200px;
     border-radius: 4px;
     border: 1px solid lightgray;
     background-color: white;
-    /* box-shadow: 0px 0px 15px lightgray; */
+    box-sizing: border-box;
 `

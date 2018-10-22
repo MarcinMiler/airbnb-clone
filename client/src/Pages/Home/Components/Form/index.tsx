@@ -12,9 +12,9 @@ export const Form: React.SFC<{}> = () => (
             <Input label="GDZIE?" placeholder="Warszaw" onChange={() => null} />
 
             <Input
+                onChange={() => null}
                 label="PRZYJAZD"
                 placeholder="dd-mm-rrrr"
-                onChange={() => null}
             />
 
             <Input label="GOSĆIE" placeholder="1 gość" onChange={() => null} />

@@ -7,23 +7,23 @@ interface Props {
     placeholder: string
     type?: string
     noMargin?: boolean
+    value?: number
+    min?: number
     onChange: (value: string) => void
 }
 
 export const Input: React.SFC<Props> = ({
     label,
-    placeholder,
     onChange,
-    type,
-    noMargin
+    noMargin,
+    ...inputProps
 }) => (
     <Container noMargin={noMargin}>
         {label && <Label>{label}</Label>}
 
         <StyledInput
             onChange={(e: any) => onChange(e.target.value)}
-            placeholder={placeholder}
-            type={type}
+            {...inputProps}
         />
     </Container>
 )
