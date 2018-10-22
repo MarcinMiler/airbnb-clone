@@ -33,10 +33,18 @@ interface Props {
     children: (values: WithListings) => React.ReactNode
 }
 
-export class SearchListingsQuery extends React.PureComponent<Props> {
+export class SearchListingsQuery extends React.Component<Props> {
+    public shouldComponentUpdate(nextProps: Props) {
+        if (this.props.address !== nextProps.address) {
+            return true
+        }
+
+        return false
+    }
+
     public render() {
         const { address } = this.props
-        console.log(address)
+
         return (
             <Query query={searchListingsQuery} variables={{ address }}>
                 {({ data, loading }) => {
