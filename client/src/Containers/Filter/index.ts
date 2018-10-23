@@ -10,7 +10,7 @@ export class Filter extends Container<State> {
     public readonly state = {
         guests: 1,
         priceMin: 0,
-        priceMax: 10000000
+        priceMax: 0
     }
 
     public updateState = (newState: object) => this.setState(newState)
