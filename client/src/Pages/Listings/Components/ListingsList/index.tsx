@@ -4,14 +4,18 @@ import { Subscribe } from 'unstated'
 import { SearchListingsQuery } from 'src/Graphql/SearchListings'
 import { ListingItem } from './Components/ListingItem'
 import { Location } from 'src/Containers/Location'
+import { Filter } from 'src/Containers/Filter'
 
 import { Container } from './style'
 
 export const ListingsList: React.SFC<{}> = () => (
     <Container>
-        <Subscribe to={[Location]}>
-            {({ state: { place }, setPostion }: Location) => (
-                <SearchListingsQuery address={place}>
+        <Subscribe to={[Location, Filter]}>
+            {(
+                { state: { place }, setPostion }: Location,
+                { state: { ...filters } }: Filter
+            ) => (
+                <SearchListingsQuery address={place} {...filters}>
                     {({ listings, loading }) =>
                         listings.map(listing => (
                             <ListingItem

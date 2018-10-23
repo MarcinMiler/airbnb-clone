@@ -5,8 +5,20 @@ import gql from 'graphql-tag'
 import { Listing } from 'src/graphql.schema'
 
 export const searchListingsQuery = gql`
-    query SearchListings($address: [String]) {
-        searchListings(input: { address: $address }) {
+    query SearchListings(
+        $address: [String]
+        $guests: Int
+        $priceMin: Int
+        $priceMax: Int
+    ) {
+        searchListings(
+            input: {
+                address: $address
+                guests: $guests
+                priceMin: $priceMin
+                priceMax: $priceMax
+            }
+        ) {
             id
             name
             category
@@ -30,23 +42,30 @@ interface WithListings {
 
 interface Props {
     address: string[]
+    guests?: number
+    priceMin?: number
+    priceMax?: number
     children: (values: WithListings) => React.ReactNode
 }
 
-export class SearchListingsQuery extends React.Component<Props> {
-    public shouldComponentUpdate(nextProps: Props) {
-        if (this.props.address !== nextProps.address) {
-            return true
-        }
+export class SearchListingsQuery extends React.PureComponent<Props> {
+    // public shouldComponentUpdate(nextProps: Props) {
+    //     const { address, guests, priceMin, priceMax } = this.props
+    //     if (this.props.address !== nextProps.address) {
+    //         return true
+    //     }
 
-        return false
-    }
+    //     return false
+    // }
 
     public render() {
-        const { address } = this.props
+        const { address, guests, priceMin, priceMax } = this.props
 
         return (
-            <Query query={searchListingsQuery} variables={{ address }}>
+            <Query
+                query={searchListingsQuery}
+                variables={{ address, guests, priceMin, priceMax }}
+            >
                 {({ data, loading }) => {
                     let listings: Listing[] = []
 
