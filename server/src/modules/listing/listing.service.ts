@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository, getRepository } from 'typeorm'
 
 import { CreateListingDto } from './dto/create-listing.dto'
-import { SearchListingsDto } from './dto/search-listing-dto'
 import { Listing } from './listing.entity'
 
 @Injectable()
@@ -21,10 +20,15 @@ export class ListingService {
         return await this.listingRepo.findOne(id)
     }
 
-    async searchListings(args: SearchListingsDto) {
+    async searchListings(args) {
         return await getRepository(Listing)
             .createQueryBuilder('l')
-            .where(`l.addressTags @> '{${args.address}}'`)
+            .where(`l.addressTags @> '{${args.address || []}}'`)
+            .andWhere(`l.guests >= :guests`, { guests: args.guests || 1 })
+            .andWhere(`l.price between :priceMin and :priceMax`, {
+                priceMin: args.priceMin || 0,
+                priceMax: args.priceMax || 999999
+            })
             .getMany()
     }
 

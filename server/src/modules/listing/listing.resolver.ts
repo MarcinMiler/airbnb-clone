@@ -5,8 +5,7 @@ import { GqlAuthGuard } from '../auth/guards/GqlAuthGuard'
 import { ListingService } from './listing.service'
 import { Listing } from '../../graphql.schema'
 import { CreateListingDto } from './dto/create-listing.dto'
-import { Usr } from 'modules/user/user.decorator'
-import { SearchListingsDto } from './dto/search-listing-dto'
+import { Usr } from '../user/user.decorator'
 
 @Resolver('Listing')
 export class ListingResolver {
@@ -23,7 +22,7 @@ export class ListingResolver {
     }
 
     @Query('searchListings')
-    searchListings(@Args('input') args: SearchListingsDto) {
+    searchListings(@Args('input') args: any) {
         return this.listingService.searchListings(args)
     }
 

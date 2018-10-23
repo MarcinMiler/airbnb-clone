@@ -14,6 +14,9 @@ export class CreateListingInput {
 
 export class SearchListingsInput {
     address?: string[];
+    guests?: number;
+    priceMin?: number;
+    priceMax?: number;
 }
 
 export class UserDataInput {

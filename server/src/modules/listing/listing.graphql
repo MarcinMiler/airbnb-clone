@@ -25,6 +25,9 @@ type Listing {
 
 input SearchListingsInput {
     address: [String]
+    guests: Int
+    priceMin: Int
+    priceMax: Int
 }
 
 input CreateListingInput {
