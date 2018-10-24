@@ -49,15 +49,6 @@ interface Props {
 }
 
 export class SearchListingsQuery extends React.PureComponent<Props> {
-    // public shouldComponentUpdate(nextProps: Props) {
-    //     const { address, guests, priceMin, priceMax } = this.props
-    //     if (this.props.address !== nextProps.address) {
-    //         return true
-    //     }
-
-    //     return false
-    // }
-
     public render() {
         const { address, guests, priceMin, priceMax } = this.props
 

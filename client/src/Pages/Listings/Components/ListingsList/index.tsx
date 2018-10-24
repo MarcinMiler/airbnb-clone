@@ -2,9 +2,9 @@ import * as React from 'react'
 import { Subscribe } from 'unstated'
 
 import { SearchListingsQuery } from 'src/Graphql/SearchListings'
-import { ListingItem } from './Components/ListingItem'
 import { Location } from 'src/Containers/Location'
 import { Filter } from 'src/Containers/Filter'
+import { ListingItem } from './Components/ListingItem'
 
 import { Container } from './style'
 
