@@ -6,4 +6,8 @@ Link to API: [https://airbnb-clone-mm.herokuapp.com/](https://airbnb-clone-mm.he
 
 ## Screens
 
-![landing](./client/src/Images/landing.png)
+![landing](./client/src/Images/Landing.png)
+![login](./client/src/Images/Login.png)
+![listings](./client/src/Images/Listings.png)
+![listing](./client/src/Images/Listing.png)
+![create](./client/src/Images/Create.png)
